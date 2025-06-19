@@ -1,0 +1,10 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Exclude node_modules
+node_modules/
+
+# Exclude Next.js build output
+.next/
+
+# Exclude large RAR file
+my-app.rar

@@ -1,0 +1,326 @@
+@import "tailwindcss";
+
+:root {
+  --background: #111828;
+  --foreground: #f8f9fa;
+  --primary: #a259ff;  /* Purple */
+  --primary-hover: #b57aff;
+  --primary-foreground: #ffffff;
+  --secondary: #2c1a47;  /* Dark purple */
+  --secondary-foreground: #ffffff;
+  --accent: #ff5e9f;  /* Pink */
+  --accent-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
+  --ring: rgba(162, 89, 255, 0.5);
+  --radius: 0.5rem;
+  
+  --card: #1a1a2e;
+  --card-foreground: #f8f9fa;
+  --input: #252538;
+  --input-foreground: #f8f9fa;
+  
+  /* Colors from old project */
+  --pink: #ff5e9f;
+  --red: #ff4d4d;
+  --yellow: #ffd700;
+  --blue: #5a78e4;
+
+  /* Font family for toast notifications - using system angular fonts */
+  --toast-font: 'Segoe UI', 'Arial', sans-serif;
+}
+
+/* Theme inline styles */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #111828;
+    --foreground: #f0f0f0;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+}
+
+/* Simplified neon text effect - reduced intensity */
+.neon-text {
+  color: #fff;
+  text-shadow: 
+    0 0 5px var(--primary),
+    0 0 10px var(--primary);
+}
+
+.glow-border {
+  box-shadow: 0 0 10px rgba(162, 89, 255, 0.3);
+}
+
+/* Simplified gradient background with reduced animation */
+.gradient-bg {
+  background: linear-gradient(45deg, var(--secondary), var(--primary), var(--accent));
+  background-size: 200% 200%;
+  animation: gradientAnimation 8s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Grid pattern background for feature badges */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: moveGrid 20s linear infinite;
+}
+
+@keyframes moveGrid {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-hover);
+}
+
+/* Custom scrollbar for search popup */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(26, 26, 46, 0.5);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #7e22ce, #9333ea);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #9333ea, #a855f7);
+  background-clip: padding-box;
+}
+
+/* Mobile header fixes */
+@media (max-width: 480px) {
+  .header-actions {
+    gap: 8px;
+  }
+  
+  .header-action-button {
+    min-width: 40px;
+    min-height: 40px;
+  }
+}
+
+/* Loading animation - simplified */
+.loading-dots {
+  display: inline-flex;
+}
+
+.loading-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  animation: pulse 2s infinite ease-in-out;
+  margin: 0 2px;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(0.6); opacity: 0.6; }
+  50% { transform: scale(1); opacity: 1; }
+}
+
+/* Animations from old project - simplified for performance */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInDown {
+  animation: fadeInDown 0.4s ease-out forwards;
+}
+
+/* Toast Notifications - Futuristic Styles with Angular Font */
+.toast-font {
+  font-family: var(--toast-font);
+  letter-spacing: 0.03em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Apply the font to all toast components */
+[data-radix-toast-root] {
+  font-family: var(--toast-font);
+  letter-spacing: 0.03em;
+  font-weight: 600;
+}
+
+[data-radix-toast-title],
+[data-radix-toast-description] {
+  font-family: var(--toast-font);
+  letter-spacing: 0.03em;
+}
+
+[data-radix-toast-title] {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+[data-radix-toast-description] {
+  font-weight: 500;
+}
+
+/* Toast Notifications - Entrance/Exit Animations Only */
+@keyframes toastEnter {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toastLeave {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Futuristic glow effects */
+.glow-text {
+  text-shadow: 0 0 8px var(--primary);
+}
+
+.glow-border-hover:hover {
+  box-shadow: 0 0 15px var(--primary);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Animation for data-[state=open] */
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Animation for data-[state=closed] */
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+[data-state="open"].animate-slide-in {
+  animation: slideInFromRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+[data-state="closed"].animate-slide-out {
+  animation: slideOutToRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.btn-gradient {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(90deg, var(--accent), var(--primary));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-glow {
+  box-shadow: 0 0 10px var(--primary);
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 20px var(--primary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}

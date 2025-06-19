@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Destek Talebiniz Yanıtlandı</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #eee;
+        }
+        .header {
+            background-color: #7e22ce;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .footer {
+            background-color: #f5f5f5;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+        }
+        .ticket-details {
+            margin: 20px 0;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+        .button {
+            display: inline-block;
+            background-color: #7e22ce;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Destek Talebiniz Yanıtlandı</h1>
+        </div>
+        <div class="content">
+            <h2>Sayın {{name}},</h2>
+            <p>"<strong>{{ticketTitle}}</strong>" başlıklı destek talebiniz yanıtlandı.</p>
+            
+            <div class="ticket-details">
+                <p>Destek ekibimiz talebinizi inceledi ve yanıt verdi. Yanıtı görüntülemek ve talebinizle ilgili iletişime devam etmek için lütfen hesabınıza giriş yapın.</p>
+                
+                <a href="#" class="button">Yanıtı Görüntüle</a>
+            </div>
+            
+            <p>Yanıtımız sorununuzu çözmediyse, lütfen aynı destek talebi üzerinden iletişime devam ediniz.</p>
+            
+            <p>Teşekkürler,<br>{{siteName}} Destek Ekibi</p>
+        </div>
+        <div class="footer">
+            <p>Bu e-posta {{siteName}} tarafından gönderilmiştir. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+</body>
+</html> 

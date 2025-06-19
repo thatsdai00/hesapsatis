@@ -1,0 +1,315 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String          @id @default(cuid())
+  name           String?
+  email          String          @unique
+  emailVerified  DateTime?
+  password       String
+  image          String?
+  role           Role            @default(USER)
+  balance        Decimal         @default(0) @db.Decimal(10, 2)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  accounts       Account[]
+  activityLogs   ActivityLog[]
+  orders         Order[]
+  sessions       Session[]
+  tickets        Ticket[]
+  ticketMessages TicketMessage[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  email     String
+  token     String   @unique
+  expires   DateTime
+  createdAt DateTime @default(now())
+
+  @@index([email])
+}
+
+model Category {
+  id             String    @id @default(cuid())
+  name           String
+  slug           String    @unique
+  description    String?
+  image          String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  showOnHomepage Boolean   @default(false)
+  isActive       Boolean   @default(true)
+  order          Int       @default(0)
+  seoDescription String?
+  seoKeywords    String?
+  seoTitle       String?
+  products       Product[]
+}
+
+model Product {
+  id             String      @id @default(cuid())
+  name           String
+  slug           String      @unique
+  description    String?
+  price          Decimal     @db.Decimal(10, 2)
+  image          String?
+  stockCount     Int         @default(0)
+  categoryId     String
+  published      Boolean     @default(false)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  isActive       Boolean     @default(true)
+  isFeatured     Boolean     @default(false)
+  isBestseller   Boolean     @default(false)
+  seoDescription String?
+  seoKeywords    String?
+  seoTitle       String?
+  orderItems     OrderItem[]
+  category       Category    @relation(fields: [categoryId], references: [id])
+  stocks         Stock[]
+}
+
+model Stock {
+  id          String   @id @default(cuid())
+  productId   String
+  content     String
+  isDelivered Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  orderId     String?
+  order       Order?   @relation(fields: [orderId], references: [id])
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, content])
+}
+
+model Order {
+  id             String         @id @default(cuid())
+  userId         String
+  totalAmount    Decimal        @db.Decimal(10, 2)
+  status         OrderStatus    @default(PENDING)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  deliveryStatus DeliveryStatus @default(PENDING)
+  deliveryLogs   DeliveryLog[]
+  user           User           @relation(fields: [userId], references: [id])
+  orderItems     OrderItem[]
+  stocks         Stock[]
+  tickets        Ticket[]
+}
+
+model DeliveryLog {
+  id        String   @id @default(cuid())
+  orderId   String
+  stockId   String
+  status    String
+  message   String?
+  createdAt DateTime @default(now())
+  order     Order    @relation(fields: [orderId], references: [id])
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  productId String
+  quantity  Int
+  price     Decimal  @db.Decimal(10, 2)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id])
+}
+
+model Slider {
+  id        String   @id @default(cuid())
+  title     String
+  subtitle  String?
+  image     String
+  link      String?
+  active    Boolean  @default(true)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model QuickAccessItem {
+  id             String   @id @default(cuid())
+  title          String
+  color          String?
+  imageUrl       String?
+  destinationUrl String
+  visible        Boolean  @default(true)
+  order          Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model CustomPage {
+  id             String   @id @default(cuid())
+  title          String
+  slug           String   @unique
+  content        String
+  seoTitle       String?
+  seoDescription String?
+  seoKeywords    String?
+  published      Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Ticket {
+  id        String          @id @default(cuid())
+  userId    String
+  status    TicketStatus    @default(OPEN)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  orderId   String?
+  title     String
+  order     Order?          @relation(fields: [orderId], references: [id])
+  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages  TicketMessage[]
+}
+
+model TicketMessage {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ticketId  String
+  userId    String
+  isAdmin   Boolean  @default(false)
+  isRefund  Boolean  @default(false)
+  ticket    Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model SiteSettings {
+  id                       Int      @id @default(1)
+  logoWhiteText            String   @default("thats")
+  logoAccentText           String   @default("dai")
+  logoWhiteColor           String   @default("#FFFFFF")
+  logoAccentColor          String   @default("#7e22ce")
+  siteName                 String   @default("thatsdai")
+  footerDescription        String   @default("Güvenli, hızlı ve uygun fiyatlı oyun hesapları ve içerik satışı.")
+  footerBottomText         String   @default("© 2025 thatsdai.com. Tüm hakları saklıdır.")
+  footerInstitutionalTitle String   @default("Kurumsal")
+  socialFacebook           String?
+  socialTwitter            String?
+  socialInstagram          String?
+  socialDiscord            String?
+  socialYoutube            String?
+  socialFacebookVisible    Boolean  @default(false)
+  socialTwitterVisible     Boolean  @default(false)
+  socialInstagramVisible   Boolean  @default(false)
+  socialDiscordVisible     Boolean  @default(false)
+  socialYoutubeVisible     Boolean  @default(false)
+  contactEmail             String?
+  contactPhone             String?
+  contactWhatsapp          String?
+  contactAddress           String?
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+  siteTitle                String   @default("")
+  ogImage                  String   @default("")
+  seoDescription           String   @default("")
+  seoKeywords              String   @default("")
+}
+
+model HeaderLink {
+  id        String   @id @default(cuid())
+  text      String
+  url       String
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FooterLink {
+  id        String   @id @default(cuid())
+  text      String
+  url       String
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  section   String   @default("institutional")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  type      String
+  message   String
+  userId    String?
+  createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id])
+}
+
+enum Role {
+  USER
+  ADMIN
+  MANAGER
+  SUPPORTER
+  BANNED
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  CANCELED
+}
+
+enum DeliveryStatus {
+  PENDING
+  DELIVERED
+  FAILED
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  CLOSED
+}

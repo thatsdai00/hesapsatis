@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sipariş Onayı</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #eee;
+        }
+        .header {
+            background-color: #7e22ce;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .footer {
+            background-color: #f5f5f5;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+        }
+        .order-details {
+            margin: 20px 0;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background-color: #f5f5f5;
+            text-align: left;
+            padding: 10px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #7e22ce;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        .order-total {
+            font-weight: bold;
+            margin-top: 15px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Siparişiniz Alındı</h1>
+        </div>
+        <div class="content">
+            <h2>Merhaba {{name}},</h2>
+            <p>Siparişiniz başarıyla alındı! Siparişiniz ile ilgili detaylar aşağıdadır:</p>
+            
+            <div class="order-details">
+                <h3>Sipariş Numarası: #{{orderId}}</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ürün</th>
+                            <th>Miktar</th>
+                            <th>Fiyat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{products}}
+                    </tbody>
+                </table>
+                
+                <div class="order-total">
+                    Toplam: {{totalAmount}}
+                </div>
+            </div>
+            
+            <p>Siparişiniz onaylandı ve işleme alındı. Ürünleriniz hesabınıza en kısa sürede teslim edilecektir.</p>
+            <p>Siparişinizle ilgili herhangi bir sorunuz varsa, lütfen hesabınızdaki destek bölümünden bizimle iletişime geçin.</p>
+            
+            <p>Teşekkürler,<br>{{siteName}} Ekibi</p>
+        </div>
+        <div class="footer">
+            <p>Bu e-posta {{siteName}} tarafından gönderilmiştir. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+</body>
+</html> 

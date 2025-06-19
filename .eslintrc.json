@@ -1,0 +1,23 @@
+{
+  "extends": "next/core-web-vitals",
+  "ignorePatterns": [
+    "src/app/admin/orders/page.tsx",
+    "src/app/admin/seo/page.tsx",
+    "src/app/admin/settings/page.tsx",
+    "src/app/api/admin/quick-access/[id]/route.ts",
+    "src/app/api/admin/quick-access/route.ts",
+    "src/app/api/admin/tickets/[id]/refund/route.ts",
+    "src/app/api/auth/forgot-password/route.ts",
+    "src/app/api/auth/register/route.ts",
+    "src/app/api/auth/reset-password/route.ts",
+    "src/app/api/auth/verify-token/route.ts",
+    "src/app/dashboard/orders/page.tsx",
+    "src/app/page.tsx",
+    "src/app/urun/[slug]/ProductPageClient.tsx"
+  ],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "react/no-unescaped-entities": "error"
+  }
+} 

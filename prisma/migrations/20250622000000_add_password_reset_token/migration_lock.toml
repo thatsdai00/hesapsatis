@@ -1,0 +1,5 @@
+# This file is maintained by Prisma.
+# Please don't edit it manually.
+# It is used to prevent concurrent migrations.
+
+provider = "postgresql" 

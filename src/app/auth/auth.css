@@ -1,0 +1,88 @@
+/* Animation for form entry */
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(162, 89, 255, 0.4);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(162, 89, 255, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(162, 89, 255, 0);
+  }
+}
+
+/* Icon button animations */
+.auth-icon-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.auth-icon-button:hover {
+  transform: translateY(-3px);
+}
+
+.auth-icon-button.active {
+  transform: scale(1.1);
+}
+
+.auth-icon-button.active .icon-container {
+  animation: pulse 2s infinite;
+}
+
+/* Form container styles */
+.auth-form-container {
+  position: relative;
+  min-height: 320px; /* Ensure consistent height during animations */
+}
+
+/* Form animations */
+.login-form-enter {
+  animation: slideInFromLeft 0.4s forwards;
+}
+
+.register-form-enter {
+  animation: slideInFromRight 0.4s forwards;
+}
+
+/* Error message animation */
+.auth-error {
+  animation: fadeIn 0.3s forwards;
+  background: rgba(239, 68, 68, 0.1);
+  border-left: 3px solid rgb(239, 68, 68);
+  padding: 8px 12px;
+  margin-top: 8px;
+  border-radius: 4px;
+} 

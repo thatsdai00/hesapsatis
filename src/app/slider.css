@@ -1,0 +1,126 @@
+/* Hero Slider Styles */
+
+.hero-slider {
+  position: relative;
+  height: 550px;
+  overflow: hidden;
+}
+
+.hero-slider .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.hero-slider .slide.active {
+  opacity: 1;
+}
+
+.hero-slider .slide-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-slider .slide-content {
+  position: relative;
+  z-index: 10;
+  padding: 2rem;
+  max-width: 600px;
+}
+
+/* Navigation arrows */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.3s ease;
+}
+
+.slider-arrow:hover {
+  background-color: rgba(162, 89, 255, 0.7);
+}
+
+.slider-arrow.prev {
+  left: 20px;
+}
+
+.slider-arrow.next {
+  right: 20px;
+}
+
+/* Slider dots */
+.slider-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 20;
+}
+
+.slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slider-dot.active {
+  width: 30px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+/* Slide transitions */
+.slide-enter {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+.slide-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 500ms, transform 500ms;
+}
+
+.slide-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.slide-exit-active {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 500ms, transform 500ms;
+}
+
+/* Game-specific styles */
+.valorant-overlay {
+  background: linear-gradient(to right, rgba(255, 70, 85, 0.3), rgba(17, 24, 40, 0.7));
+}
+
+.pubg-overlay {
+  background: linear-gradient(to right, rgba(241, 196, 15, 0.3), rgba(17, 24, 40, 0.7));
+} 

@@ -1,0 +1,110 @@
+/* PUBG Mobile Theme CSS */
+
+.pubg-gradient-bg {
+  background: linear-gradient(to right, #111828, #2c1a47, #111828);
+  background-size: 200% 200%;
+  animation: gradientBg 10s ease infinite;
+}
+
+.pubg-card {
+  border: 1px solid rgba(162, 89, 255, 0.1);
+  background-color: #111828;
+  transition: all 0.3s ease;
+}
+
+.pubg-card:hover {
+  box-shadow: 0 0 15px rgba(162, 89, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.pubg-button {
+  background-color: #a259ff;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.pubg-button:hover {
+  background-color: #b57aff;
+}
+
+.pubg-button-red {
+  background-color: #ff4d4d;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.pubg-button-red:hover {
+  background-color: #ff6b6b;
+}
+
+.pubg-button-gold {
+  background-color: #ffd700;
+  color: #111828;
+  transition: all 0.3s ease;
+}
+
+.pubg-button-gold:hover {
+  background-color: #ffe44d;
+}
+
+.category-card {
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.category-card:hover img {
+  transform: scale(1.05);
+}
+
+@keyframes gradientBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Slider styling */
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.slider-dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background: white;
+}
+
+/* Price tag styling */
+.price-tag {
+  font-weight: bold;
+  color: #a259ff;
+  background: transparent;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Star ratings */
+.star-rating {
+  color: #ffd700;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111828;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a259ff;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b57aff;
+} 

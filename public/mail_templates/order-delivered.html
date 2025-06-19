@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Siparişiniz Teslim Edildi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #eee;
+        }
+        .header {
+            background-color: #7e22ce;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .footer {
+            background-color: #f5f5f5;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+        }
+        .order-details {
+            margin: 20px 0;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+        .account-details {
+            margin: 20px 0;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #f0f9ff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        th {
+            background-color: #f5f5f5;
+            text-align: left;
+            padding: 10px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #7e22ce;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        .important {
+            color: #e53e3e;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Siparişiniz Teslim Edildi</h1>
+        </div>
+        <div class="content">
+            <h2>Merhaba {{name}},</h2>
+            <p>Siparişiniz başarıyla teslim edildi! Satın aldığınız ürünlerin detayları aşağıdadır:</p>
+            
+            <div class="order-details">
+                <h3>Sipariş Numarası: #{{orderId}}</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ürün</th>
+                            <th>Fiyat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{products}}
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="account-details">
+                <h3>Hesap Bilgileriniz</h3>
+                <p>Aşağıdaki hesap bilgilerinizi güvenli bir yerde saklayınız:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ürün</th>
+                            <th>Hesap Bilgisi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{stockItems}}
+                    </tbody>
+                </table>
+                
+                <p class="important">Önemli: Bu bilgileri güvenli bir şekilde saklayın ve kimseyle paylaşmayın.</p>
+            </div>
+            
+            <p>Siparişinizle ilgili herhangi bir sorunuz varsa, lütfen hesabınızdaki destek bölümünden bizimle iletişime geçin.</p>
+            
+            <p>Teşekkürler,<br>{{siteName}} Ekibi</p>
+        </div>
+        <div class="footer">
+            <p>Bu e-posta {{siteName}} tarafından gönderilmiştir. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+</body>
+</html> 

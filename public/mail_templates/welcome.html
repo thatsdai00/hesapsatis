@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hoş Geldiniz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #eee;
+        }
+        .header {
+            background-color: #7e22ce;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .footer {
+            background-color: #f5f5f5;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+        }
+        .button {
+            display: inline-block;
+            background-color: #7e22ce;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Hoş Geldiniz!</h1>
+        </div>
+        <div class="content">
+            <h2>Merhaba {{name}},</h2>
+            <p>{{siteName}} ailesine hoş geldiniz! Hesabınız başarıyla oluşturuldu.</p>
+            <p>Artık hesabınıza giriş yapabilir ve platformumuzun tüm özelliklerinden yararlanabilirsiniz:</p>
+            <ul>
+                <li>Hızlı ve güvenli alışveriş</li>
+                <li>Sipariş geçmişi ve takibi</li>
+                <li>Özel fırsatlar ve indirimler</li>
+                <li>7/24 müşteri desteği</li>
+            </ul>
+            <p>Herhangi bir sorunuz veya yardıma ihtiyacınız olursa, müşteri destek ekibimizle iletişime geçmekten çekinmeyin.</p>
+            <p>Teşekkürler,<br>{{siteName}} Ekibi</p>
+        </div>
+        <div class="footer">
+            <p>Bu e-posta {{siteName}} tarafından gönderilmiştir. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+</body>
+</html> 
